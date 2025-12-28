@@ -1,65 +1,140 @@
-import Image from "next/image";
+// import Image from "next/image";
+import { Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { WhatsappCTA } from "@/components/whatsapp/WhatsappCTA";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-brand-blue">
+        <div className="absolute inset-0 opacity-30">
+          {/* placeholder: depois você troca pela imagem do banner */}
+          <div className="h-full w-full bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,.25),transparent_60%),radial-gradient(circle_at_80%_30%,rgba(247,226,85,.20),transparent_60%)]" />
+        </div>
+        <Container>
+          <div className="relative grid gap-10 py-16 lg:grid-cols-2 lg:py-24">
+            <div>
+              <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+                Potencialize a inteligência do seu filho com música
+              </h1>
+              <p className="mt-4 text-base text-white/80">
+                Aulas com metodologia moderna, acolhimento e foco em desenvolvimento
+                cognitivo, social e emocional.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button href="/contato">Agendar experiência</Button>
+                <Button href="/licenciado" variant="outline">
+                  Quero ser Licenciado
+                </Button>
+                <WhatsappCTA className="hidden sm:inline-flex" />
+              </div>
+
+              <div className="mt-8 flex gap-6 text-sm text-white/80">
+                <div className="rounded-xl bg-white/10 px-4 py-3">
+                  <div className="font-semibold text-white">+100</div>
+                  <div className="text-white/70">avaliações</div>
+                </div>
+                <div className="rounded-xl bg-white/10 px-4 py-3">
+                  <div className="font-semibold text-white">2</div>
+                  <div className="text-white/70">unidades</div>
+                </div>
+                <div className="rounded-xl bg-white/10 px-4 py-3">
+                  <div className="font-semibold text-white">Aulas</div>
+                  <div className="text-white/70">para todas as idades</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative hidden lg:block">
+              <div className="rounded-2xl bg-white/10 p-6 shadow-soft">
+                <div className="aspect-[16/10] w-full rounded-xl bg-white/10" />
+                <p className="mt-4 text-sm text-white/75">
+                  Depois a gente troca essa área por uma foto real do espaço / aula.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* PROGRAMAS */}
+      <Section className="bg-white" >
+        <div id="programas" className="scroll-mt-24" />
+        <div className="mb-10">
+          <h2 className="text-3xl font-extrabold text-brand-ink">
+            Programas para cada fase
+          </h2>
+          <p className="mt-2 text-brand-muted">
+            Experiências musicais com propósito: do desenvolvimento infantil ao palco.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <Card title="Musicalização Infantil" desc="Coordenação, ritmo e desenvolvimento desde os primeiros passos." />
+          <Card title="Instrumentos & Canto" desc="Do iniciante ao avançado, com acompanhamento personalizado." />
+          <Card title="Inclusão & Musicoterapia" desc="Acolhimento real e metodologia adaptada para cada aluno." />
+          <Card title="Prática em Conjunto" desc="Bandas e práticas para socialização e experiência de palco." />
         </div>
-      </main>
-    </div>
+      </Section>
+
+      {/* MÉTODO */}
+      <Section className="bg-brand-blueSoft">
+        <div id="metodo" className="scroll-mt-24" />
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="rounded-2xl bg-white p-6 shadow-soft">
+            <div className="aspect-[4/3] w-full rounded-xl bg-brand-blue/10" />
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-extrabold text-brand-ink">
+              Mais que música: desenvolvimento humano
+            </h2>
+            <p className="mt-3 text-brand-muted">
+              Metodologia que une tecnologia, neurociência e acolhimento.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {[
+                "Material didático próprio focado em resultados",
+                "Exercícios para memória e foco",
+                "Inclusão real e equipe treinada",
+              ].map((item) => (
+                <li key={item} className="flex gap-3 rounded-xl bg-white p-4 shadow-soft">
+                  <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue text-white">
+                    ✓
+                  </span>
+                  <span className="font-medium text-brand-ink">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex gap-3">
+              <Button href="/contato">Agendar</Button>
+              <WhatsappCTA />
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA FINAL */}
+      <Section className="bg-brand-blue">
+        <div className="rounded-2xl bg-white/10 p-8 text-center shadow-soft">
+          <h3 className="text-2xl font-extrabold text-white">
+            Pronto pra viver a experiência?
+          </h3>
+          <p className="mt-2 text-white/80">
+            Fale com a equipe no WhatsApp e agende uma visita.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <Button href="/contato">Ver unidades</Button>
+            <WhatsappCTA />
+          </div>
+        </div>
+      </Section>
+    </main>
   );
 }
