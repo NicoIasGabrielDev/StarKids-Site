@@ -15,8 +15,11 @@ export function Header() {
       <Container>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            {/* placeholder logo */}
-            <div className="h-10 w-10 rounded-xl bg-white/15" />
+            <img
+              src="/logo_musical.png"
+              alt="Starkids Music"
+              className="h-10 w-10 rounded-xl object-cover"
+            />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-white">Starkids</div>
               <div className="text-xs text-white/70">Music</div>

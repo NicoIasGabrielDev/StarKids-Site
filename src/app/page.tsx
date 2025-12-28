@@ -51,10 +51,13 @@ export default function HomePage() {
 
             <div className="relative hidden lg:block">
               <div className="rounded-2xl bg-white/10 p-6 shadow-soft">
-                <div className="aspect-[16/10] w-full rounded-xl bg-white/10" />
-                <p className="mt-4 text-sm text-white/75">
-                  Depois a gente troca essa área por uma foto real do espaço / aula.
-                </p>
+                <div className="aspect-[16/10] w-full rounded-xl bg-white/10" >
+                        <img
+                          src="/aula.png"
+                          alt="Aula de música"
+                          className="mt-4 w-full rounded-xl object-cover"
+                        />
+                </div>
               </div>
             </div>
           </div>
@@ -85,14 +88,17 @@ export default function HomePage() {
       <Section className="bg-brand-blueSoft">
         <div id="metodo" className="scroll-mt-24" />
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div className="rounded-2xl bg-white p-6 shadow-soft">
-            <div className="aspect-[4/3] w-full rounded-xl bg-brand-blue/10" />
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-extrabold text-brand-ink">
-              Mais que música: desenvolvimento humano
-            </h2>
+              <div className="rounded-2xl bg-white/10 p-4 shadow-soft">
+              
+            <div className="aspect-[4/3] w-full rounded-xl bg-brand-blue/10" >
+            <img
+                          src="/aulamusica1.jpg"
+                          alt="Aula de música"
+                          className="w-full rounded-xl object-cover"
+                        />
+            </div>
+                        
+            
             <p className="mt-3 text-brand-muted">
               Metodologia que une tecnologia, neurociência e acolhimento.
             </p>
