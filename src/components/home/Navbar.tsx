@@ -35,7 +35,10 @@ export default function Navbar({
             <a href="#licenciado" className="font-medium text-gray-700 transition hover:text-yellow-500">
               Quero ser Licenciado
             </a>
-            <button className="rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-2.5 text-sm font-extrabold text-white transition-all hover:scale-105 hover:shadow-xl">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-lead-modal"))}
+              className="rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-2.5 text-sm font-extrabold text-white transition-all hover:scale-105 hover:shadow-xl"
+            >
               Agendar Aula Experimental
               <ChevronRight className="ml-2 inline-block" size={18} />
             </button>
@@ -61,7 +64,13 @@ export default function Navbar({
             >
               Quero ser Licenciado
             </a>
-            <button className="w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 font-extrabold text-white hover:shadow-xl">
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("open-lead-modal"));
+                setMobileMenuOpen(false);
+              }}
+              className="w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 font-extrabold text-white hover:shadow-xl"
+            >
               Agendar Aula Experimental
             </button>
           </div>

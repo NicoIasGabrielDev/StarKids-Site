@@ -16,25 +16,44 @@ const reasons = [
   "Socialização",
 ] as const;
 
-const units = ["Recreio", "Barra"] as const;
+const units = ["Recreio", "Barra da Tijuca"] as const;
 const availability = ["Manhã", "Tarde", "Noite"] as const;
 
 export function LeadModal() {
   const [open, setOpen] = useState(false);
 
   const [reason, setReason] = useState("");
+  const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [slot, setSlot] = useState("");
   const [age, setAge] = useState<number | "">("");
+  const [phone, setPhone] = useState("");
 
   const canSubmit = useMemo(() => {
-    return reason && unit && slot && age !== "" && Number(age) > 0;
-  }, [reason, unit, slot, age]);
+    return (
+      reason &&
+      name.trim().length > 0 &&
+      unit &&
+      slot &&
+      age !== "" &&
+      Number(age) > 0 &&
+      phone.trim().length >= 8
+    );
+  }, [reason, unit, slot, age, phone]);
 
-  // useEffect(() => {
-  //   const alreadyDone = localStorage.getItem(STORAGE_DONE_KEY) === "true";
-  //   if (!alreadyDone) setOpen(true);
-  // }, []);
+  useEffect(() => {
+    const alreadyDone = localStorage.getItem(STORAGE_DONE_KEY) === "true";
+    if (!alreadyDone) setOpen(true);
+  }, []);
+
+  useEffect(() => {
+    function handleOpen() {
+      setOpen(true);
+    }
+
+    window.addEventListener("open-lead-modal", handleOpen as EventListener);
+    return () => window.removeEventListener("open-lead-modal", handleOpen as EventListener);
+  }, []);
 
   function persist(data: LeadData) {
     localStorage.setItem(STORAGE_DONE_KEY, "true");
@@ -46,9 +65,11 @@ export function LeadModal() {
 
     const data: LeadData = {
       reason,
+      name,
       unit,
       availability: slot,
       age: Number(age),
+      phone,
       preference,
     };
 
@@ -146,6 +167,29 @@ export function LeadModal() {
                 </Field>
               </div>
 
+              <Field label="Nome">
+                <input
+                  type="text"
+                  className="w-full rounded-2xl border border-slate-200 bg-white p-3 text-sm outline-none transition focus:border-brand-blue/40 focus:ring-4 focus:ring-brand-blue/10"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ex: Maria Silva"
+                />
+              </Field>
+
+              <Field label="Telefone (WhatsApp)">
+                <input
+                  type="tel"
+                  inputMode="tel"
+                  className="w-full rounded-2xl border border-slate-200 bg-white p-3 text-sm outline-none transition focus:border-brand-blue/40 focus:ring-4 focus:ring-brand-blue/10"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Ex: (21) 9 9999-9999"
+                />
+              </Field>
+
               <Field label="Idade do aluno">
                 <input
                   type="number"
@@ -176,7 +220,6 @@ export function LeadModal() {
                     🤖 WhatsApp / IA
                     <span className="opacity-90 transition group-hover:translate-x-0.5">→</span>
                   </button>
-
                   <button
                     type="submit"
                     disabled={!canSubmit}
@@ -203,15 +246,10 @@ export function LeadModal() {
 
             <button
               type="button"
-              onClick={() => {
-                // reset (se quiser testar modal sempre)
-                localStorage.removeItem(STORAGE_DONE_KEY);
-                localStorage.removeItem(STORAGE_DATA_KEY);
-                window.location.reload();
-              }}
-              className="text-xs font-semibold text-slate-500 transition hover:text-slate-700"
+              onClick={closeTemporarily}
+              className="text-sm font-semibold text-slate-700 transition hover:text-slate-900"
             >
-              Reset (dev)
+              Fechar
             </button>
           </div>
         </div>
